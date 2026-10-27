@@ -20,7 +20,7 @@ const AnswerBox = ({ typed, status, result, shakeKey, className }: AnswerBoxProp
       <div
         key={shakeKey}
         className={cn(
-          "relative grid aspect-square w-full max-w-[156px] place-items-center rounded-3xl border-4 bg-card transition-colors sm:max-w-[190px] lg:max-w-[230px]",
+          "relative grid aspect-square w-full max-w-[140px] place-items-center rounded-2xl border-4 bg-card transition-colors sm:max-w-[164px] sm:rounded-3xl lg:max-w-[230px]",
           status === "idle" && "animate-pulse-glow border-panel-3/50",
           isWrong && "animate-shake-soft border-destructive bg-error-gradient",
           isCorrect && "animate-pop-in border-success bg-success-gradient shadow-panel-3"
@@ -28,7 +28,7 @@ const AnswerBox = ({ typed, status, result, shakeKey, className }: AnswerBoxProp
       >
         <span
           className={cn(
-            "tabular font-display text-mega leading-none",
+            "tabular font-display text-display leading-none lg:text-mega",
             isCorrect && "animate-star-pop text-success",
             isWrong && "text-destructive",
             !isCorrect && !isWrong && (hasTyped ? "text-panel-3" : "text-muted-foreground/50")

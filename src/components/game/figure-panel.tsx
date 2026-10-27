@@ -4,7 +4,7 @@ import type { FigureKey } from "@/components/game/figure-data";
 import { cn } from "@/lib/utils";
 
 const panelVariants = cva(
-  "relative flex animate-pop-in items-center justify-center rounded-3xl border-4 bg-gradient-to-b px-3 py-4 sm:px-4 sm:py-5",
+  "relative flex animate-pop-in items-center justify-center rounded-2xl border-4 bg-gradient-to-b px-2.5 py-3 sm:rounded-3xl sm:px-4 sm:py-5",
   {
     variants: {
       tone: {
@@ -26,7 +26,7 @@ interface FigurePanelProps {
 
 const FigurePanel = ({ count, kind, tone, celebrating, className }: FigurePanelProps) => (
   <div className={cn(panelVariants({ tone }), className)}>
-    <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 lg:gap-3">
+    <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2 lg:gap-3">
       {Array.from({ length: count }).map((_, index) => (
         <span
           key={`${kind}-${index}`}
@@ -41,7 +41,7 @@ const FigurePanel = ({ count, kind, tone, celebrating, className }: FigurePanelP
           <Figure
             kind={kind}
             className={cn(
-              "h-11 w-11 sm:h-14 sm:w-14 lg:h-16 lg:w-16",
+              "h-10 w-10 sm:h-11 sm:w-11 lg:h-16 lg:w-16",
               celebrating && "animate-celebrate-spin"
             )}
             style={celebrating ? { animationDelay: `${index * 90}ms` } : undefined}

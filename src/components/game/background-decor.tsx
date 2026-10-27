@@ -10,9 +10,9 @@ const BackgroundDecor = () => (
     <Cloud className="absolute left-[8%] top-[18%] h-16 w-16 animate-float text-card motion-reduce:animate-none" />
     <Cloud className="absolute right-[16%] bottom-[12%] h-20 w-20 animate-float-slow text-card motion-reduce:animate-none" />
 
-    <Sparkles className="absolute left-[6%] bottom-[22%] h-9 w-9 animate-wiggle text-panel-1 motion-reduce:animate-none" />
+    <Sparkles className="absolute left-[6%] bottom-[22%] hidden h-9 w-9 animate-wiggle text-panel-1 motion-reduce:animate-none sm:block" />
     <Sparkles className="absolute right-[30%] top-[10%] h-7 w-7 animate-wiggle text-panel-3 motion-reduce:animate-none" />
-    <Sparkles className="absolute left-[38%] bottom-[6%] h-8 w-8 animate-wiggle text-panel-2 motion-reduce:animate-none" />
+    <Sparkles className="absolute left-[38%] bottom-[6%] hidden h-8 w-8 animate-wiggle text-panel-2 motion-reduce:animate-none sm:block" />
   </div>
 );
 
