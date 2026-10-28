@@ -1,11 +1,17 @@
-import Index from "./pages/Index";
+import Home from "./pages/Home";
+import Sumas from "./pages/Sumas";
 import NotFound from "./pages/NotFound";
 
 export const routers = [
   {
     path: "/",
     name: "home",
-    element: <Index />,
+    element: <Home />,
+  },
+  {
+    path: "/sumas",
+    name: "sumas",
+    element: <Sumas />,
   },
   /* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */
   {

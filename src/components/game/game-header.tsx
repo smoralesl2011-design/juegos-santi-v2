@@ -1,4 +1,5 @@
-import { RotateCcw, Star } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Home, RotateCcw, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const MAX_STARS = 5;
@@ -14,12 +15,13 @@ const GameHeader = ({ score, onReset }: GameHeaderProps) => {
   return (
     <header className="flex flex-wrap items-center justify-between gap-3">
       <div className="flex items-center gap-3">
-        <div
-          aria-hidden="true"
-          className="grid h-12 w-12 shrink-0 animate-bounce-soft place-items-center rounded-blob bg-primary text-primary-foreground shadow-chunky-primary motion-reduce:animate-none sm:h-14 sm:w-14"
+        <Link
+          to="/"
+          aria-label="Volver al menú de juegos"
+          className="grid h-12 w-12 shrink-0 place-items-center rounded-pill border-2 border-border bg-card text-foreground shadow-xs transition-transform duration-100 hover:-translate-y-0.5 active:translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 sm:h-14 sm:w-14"
         >
-          <span className="font-display text-title font-extrabold">+</span>
-        </div>
+          <Home className="h-6 w-6" aria-hidden="true" />
+        </Link>
         <div>
           <h1 className="font-display text-title leading-tight text-foreground sm:text-headline">
             ¡Vamos a sumar!

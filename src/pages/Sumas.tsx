@@ -16,7 +16,7 @@ const OPTION_TONES: OptionTone[] = ["sun", "sky", "berry"];
 const toneForIndex = (index: number): OptionTone =>
   OPTION_TONES[index % OPTION_TONES.length] ?? "sun";
 
-const Index = () => {
+const Sumas = () => {
   const {
     round,
     status,
@@ -42,6 +42,10 @@ const Index = () => {
     },
     [pressDigit]
   );
+
+  useEffect(() => {
+    document.title = "Sumas · Aprende Jugando";
+  }, []);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -143,4 +147,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Sumas;
