@@ -26,7 +26,7 @@ const Home = () => {
         </section>
 
         <p className="text-center text-caption text-muted-foreground">
-          Muy pronto: más juegos de restas, multiplicaciones y formas
+          Muy pronto: más juegos de multiplicaciones, formas y números
         </p>
       </div>
     </div>

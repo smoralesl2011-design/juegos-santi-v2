@@ -35,6 +35,7 @@ export const GAMES: GameEntry[] = [
     symbol: "−",
     tone: "blue",
     figures: ["estrella", "osito"],
-    status: "soon",
+    path: "/restas",
+    status: "ready",
   },
 ];

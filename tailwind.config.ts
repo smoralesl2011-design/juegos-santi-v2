@@ -72,7 +72,9 @@ export default {
 					plus: 'hsl(var(--operator-plus) / <alpha-value>)',
 					'plus-fg': 'hsl(var(--operator-plus-fg) / <alpha-value>)',
 					equals: 'hsl(var(--operator-equals) / <alpha-value>)',
-					'equals-fg': 'hsl(var(--operator-equals-fg) / <alpha-value>)'
+					'equals-fg': 'hsl(var(--operator-equals-fg) / <alpha-value>)',
+					minus: 'hsl(var(--operator-minus) / <alpha-value>)',
+					'minus-fg': 'hsl(var(--operator-minus-fg) / <alpha-value>)'
 				},
 				option: {
 					sun: 'hsl(var(--option-sun) / <alpha-value>)',

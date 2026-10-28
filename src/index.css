@@ -62,6 +62,8 @@
 		--operator-plus-fg: 258 45% 18%;
 		--operator-equals: 152 72% 45%;
 		--operator-equals-fg: 258 45% 18%;
+		--operator-minus: 199 89% 48%;
+		--operator-minus-fg: 258 45% 18%;
 
 		/* ---------- answer options ---------- */
 		--option-sun: 42 100% 58%;

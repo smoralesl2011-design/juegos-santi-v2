@@ -2,10 +2,12 @@ import AnswerBox from "@/components/game/answer-box";
 import FigurePanel from "@/components/game/figure-panel";
 import { figureLabel } from "@/components/game/figure-data";
 import OperatorBadge from "@/components/game/operator-badge";
-import type { AnswerStatus, GameRound } from "@/hooks/use-addition-game";
+import type { MathSymbol } from "@/components/game/operations";
+import type { AnswerStatus, MathRound } from "@/hooks/use-math-game";
 
 interface EquationRowProps {
-  round: GameRound;
+  round: MathRound;
+  operator: MathSymbol;
   status: AnswerStatus;
   typed: string;
   correctAnswer: number;
@@ -17,14 +19,23 @@ interface EquationRowProps {
  * Narrow screens: box 1 and box 2 stay side by side and the "=" sign opens a
  * second row with the answer box, so the whole equation fits without scrolling.
  */
-const EquationRow = ({ round, status, typed, correctAnswer, shakeKey }: EquationRowProps) => {
+const EquationRow = ({
+  round,
+  operator,
+  status,
+  typed,
+  correctAnswer,
+  shakeKey,
+}: EquationRowProps) => {
   const celebrating = status === "correct";
   const figureName = figureLabel(round.figure);
+  const isSubtraction = operator === "−";
+  const word = isSubtraction ? "menos" : "más";
 
   return (
     <div className="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-stretch gap-x-2.5 gap-y-3 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1.05fr)] md:gap-x-3 md:gap-y-0 lg:gap-x-5">
       <p className="sr-only">
-        {`${round.a} ${figureName} más ${round.b} ${figureName}`}
+        {`${round.a} ${figureName} ${word} ${round.b} ${figureName}`}
       </p>
 
       <FigurePanel
@@ -37,8 +48,8 @@ const EquationRow = ({ round, status, typed, correctAnswer, shakeKey }: Equation
       />
 
       <OperatorBadge
-        symbol="+"
-        tone="plus"
+        symbol={operator}
+        tone={isSubtraction ? "minus" : "plus"}
         pulsing={status === "idle"}
         className="mx-auto self-center"
       />
@@ -49,6 +60,7 @@ const EquationRow = ({ round, status, typed, correctAnswer, shakeKey }: Equation
         kind={round.figure}
         tone="2"
         celebrating={celebrating}
+        removing={isSubtraction}
         className="min-h-[104px] sm:min-h-[124px] lg:min-h-[200px]"
       />
 

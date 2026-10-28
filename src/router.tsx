@@ -1,4 +1,5 @@
 import Home from "./pages/Home";
+import Restas from "./pages/Restas";
 import Sumas from "./pages/Sumas";
 import NotFound from "./pages/NotFound";
 
@@ -12,6 +13,11 @@ export const routers = [
     path: "/sumas",
     name: "sumas",
     element: <Sumas />,
+  },
+  {
+    path: "/restas",
+    name: "restas",
+    element: <Restas />,
   },
   /* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */
   {

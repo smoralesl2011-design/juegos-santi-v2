@@ -5,11 +5,14 @@ import { cn } from "@/lib/utils";
 const MAX_STARS = 5;
 
 interface GameHeaderProps {
+  heading: string;
+  subtitle: string;
+  scoreLabel: string;
   score: number;
   onReset: () => void;
 }
 
-const GameHeader = ({ score, onReset }: GameHeaderProps) => {
+const GameHeader = ({ heading, subtitle, scoreLabel, score, onReset }: GameHeaderProps) => {
   const filledStars = Math.min(score, MAX_STARS);
 
   return (
@@ -24,11 +27,9 @@ const GameHeader = ({ score, onReset }: GameHeaderProps) => {
         </Link>
         <div>
           <h1 className="font-display text-title leading-tight text-foreground sm:text-headline">
-            ¡Vamos a sumar!
+            {heading}
           </h1>
-          <p className="text-caption text-muted-foreground">
-            Cuenta los dibujos y busca el resultado
-          </p>
+          <p className="text-caption text-muted-foreground">{subtitle}</p>
         </div>
       </div>
 
@@ -42,7 +43,7 @@ const GameHeader = ({ score, onReset }: GameHeaderProps) => {
 
         <div className="flex flex-col">
           <p className="text-caption uppercase tracking-wide text-muted-foreground">
-            Sumas correctas
+            {scoreLabel}
           </p>
           <div className="flex items-center gap-2">
             <span

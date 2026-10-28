@@ -11,8 +11,13 @@ const panelVariants = cva(
         "1": "border-panel-1 from-card to-panel-1-tint shadow-panel-1",
         "2": "border-panel-2 from-card to-panel-2-tint shadow-panel-2",
       },
+      /** Subtraction: the box shows the figures that are taken away. */
+      removing: {
+        true: "border-dashed",
+        false: "",
+      },
     },
-    defaultVariants: { tone: "1" },
+    defaultVariants: { tone: "1", removing: false },
   }
 );
 
@@ -21,11 +26,22 @@ interface FigurePanelProps {
   kind: FigureKey;
   tone: "1" | "2";
   celebrating: boolean;
+  removing?: boolean;
   className?: string;
 }
 
-const FigurePanel = ({ count, kind, tone, celebrating, className }: FigurePanelProps) => (
-  <div className={cn(panelVariants({ tone }), className)}>
+const FigurePanel = ({
+  count,
+  kind,
+  tone,
+  celebrating,
+  removing = false,
+  className,
+}: FigurePanelProps) => (
+  <div
+    className={cn(panelVariants({ tone, removing }), className)}
+    aria-label={removing ? "Dibujos que se quitan" : undefined}
+  >
     <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2 lg:gap-3">
       {Array.from({ length: count }).map((_, index) => (
         <span
@@ -42,6 +58,7 @@ const FigurePanel = ({ count, kind, tone, celebrating, className }: FigurePanelP
             kind={kind}
             className={cn(
               "h-10 w-10 sm:h-11 sm:w-11 lg:h-16 lg:w-16",
+              removing && "opacity-50 saturate-50",
               celebrating && "animate-celebrate-spin"
             )}
             style={celebrating ? { animationDelay: `${index * 90}ms` } : undefined}

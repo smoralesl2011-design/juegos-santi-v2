@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import type { AnswerStatus } from "@/hooks/use-addition-game";
+import type { AnswerStatus } from "@/hooks/use-math-game";
 import { cn } from "@/lib/utils";
 
 interface AnswerBoxProps {

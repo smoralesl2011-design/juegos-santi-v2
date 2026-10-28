@@ -1,28 +1,21 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { MathOperation } from "@/components/game/operations";
 import { FIGURE_KEYS, type FigureKey } from "@/components/game/figure-data";
+import { randomInt, shuffle } from "@/lib/random";
 
 export type AnswerStatus = "idle" | "correct" | "wrong";
 
-export interface GameRound {
+export interface MathRound {
   id: number;
   a: number;
   b: number;
+  result: number;
   figure: FigureKey;
   options: number[];
 }
 
-const randomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-const shuffle = <T,>(items: T[]): T[] =>
-  [...items]
-    .map((item) => ({ item, order: Math.random() }))
-    .sort((left, right) => left.order - right.order)
-    .map(({ item }) => item);
-
-const buildRound = (id: number): GameRound => {
-  const a = randomInt(1, 5);
-  const b = randomInt(1, 5);
-  const result = a + b;
+const buildRound = (operation: MathOperation, id: number): MathRound => {
+  const { a, b, result } = operation.buildRound();
 
   const distractors = shuffle(
     [result - 2, result - 1, result + 1, result + 2, result + 3].filter(
@@ -34,13 +27,18 @@ const buildRound = (id: number): GameRound => {
     id,
     a,
     b,
+    result,
     figure: FIGURE_KEYS[randomInt(0, FIGURE_KEYS.length - 1)],
     options: shuffle([result, ...distractors]),
   };
 };
 
-export function useAdditionGame() {
-  const [round, setRound] = useState<GameRound>(() => buildRound(1));
+/**
+ * Shared engine for every maths game (sums, subtractions, ...). The only thing
+ * that changes between games is how a round is generated.
+ */
+export function useMathGame(operation: MathOperation) {
+  const [round, setRound] = useState<MathRound>(() => buildRound(operation, 1));
   const [status, setStatus] = useState<AnswerStatus>("idle");
   const [typed, setTyped] = useState("");
   const [score, setScore] = useState(0);
@@ -60,7 +58,7 @@ export function useAdditionGame() {
 
   useEffect(() => clearTimers, [clearTimers]);
 
-  const correctAnswer = round.a + round.b;
+  const correctAnswer = round.result;
 
   const submit = useCallback(
     (value: number, source: "option" | "keypad") => {
@@ -74,7 +72,7 @@ export function useAdditionGame() {
         setScore((current) => current + 1);
         setTyped("");
         later(() => {
-          setRound((current) => buildRound(current.id + 1));
+          setRound((current) => buildRound(operation, current.id + 1));
           setStatus("idle");
           setTyped("");
           setLockedOptions([]);
@@ -94,7 +92,7 @@ export function useAdditionGame() {
       }
       later(() => setStatus((current) => (current === "wrong" ? "idle" : current)), 2600);
     },
-    [clearTimers, correctAnswer, later, lockedOptions, status]
+    [clearTimers, correctAnswer, later, lockedOptions, operation, status]
   );
 
   const pressDigit = useCallback(
@@ -128,13 +126,10 @@ export function useAdditionGame() {
     setShakeKey((current) => current + 1);
   }, [clearTimers]);
 
-  const answerText = typed.length > 0 ? typed : "";
-
   return {
     round,
     status,
     typed,
-    answerText,
     correctAnswer,
     score,
     lockedOptions,
@@ -147,5 +142,3 @@ export function useAdditionGame() {
     resetScore,
   };
 }
-
-export type AdditionGame = ReturnType<typeof useAdditionGame>;
