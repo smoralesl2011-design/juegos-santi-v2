@@ -149,7 +149,6 @@ body,
 @layer utilities {
 	.bg-page-gradient {
 		background-image: var(--gradient-page);
-		background-attachment: fixed;
 	}
 
 	.bg-shine {
