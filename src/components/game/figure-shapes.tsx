@@ -1,3 +1,8 @@
+/**
+ * Hand-drawn cartoon shapes. They are kept as a second option for figures that
+ * have no image file: add `Shape: AppleShape` to an entry in `figure-data.ts`.
+ * Every current figure uses a PNG from `public/figures/` instead.
+ */
 import type { SVGProps } from "react";
 
 const INK = "hsl(var(--figure-ink))";

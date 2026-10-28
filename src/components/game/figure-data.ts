@@ -1,5 +1,4 @@
 import type { ReactElement, SVGProps } from "react";
-import { AppleShape, BearShape, StarShape } from "@/components/game/figure-shapes";
 
 export type FigureShape = (props: SVGProps<SVGSVGElement>) => ReactElement;
 
@@ -13,7 +12,7 @@ export interface FigureDefinition {
    * When present it replaces the built-in drawing.
    */
   image?: string;
-  /** Built-in cartoon drawing, used when there is no image. */
+  /** Built-in cartoon drawing (see `figure-shapes.tsx`), used when there is no image. */
   Shape?: FigureShape;
 }
 
@@ -24,11 +23,16 @@ const defineFigures = <T extends readonly FigureDefinition[]>(figures: T) => fig
  * picks randomly among all of them.
  */
 export const FIGURES = defineFigures([
-  { key: "manzana", label: "manzanas", Shape: AppleShape },
-  { key: "estrella", label: "estrellas", Shape: StarShape },
-  { key: "osito", label: "ositos", Shape: BearShape },
-  // Personal favourites only need the PNG in `public/figures/`, e.g.:
-  // { key: "micro", label: "micros", image: "/figures/micro.png" },
+  { key: "micro", label: "micrófonos", image: "/figures/micro.png" },
+  { key: "bocina", label: "bocinas", image: "/figures/bocina.png" },
+  { key: "bombo", label: "bombos", image: "/figures/bombo.png" },
+  { key: "nota", label: "notas musicales", image: "/figures/nota.png" },
+  { key: "auriculares", label: "auriculares", image: "/figures/auriculares.png" },
+  { key: "teclado", label: "teclados", image: "/figures/teclado.png" },
+  { key: "vinilo", label: "vinilos", image: "/figures/vinilo.png" },
+  { key: "triangulo", label: "triángulos", image: "/figures/triangulo.png" },
+  { key: "ukelele", label: "ukeleles", image: "/figures/ukelele.png" },
+  { key: "silbato", label: "silbatos", image: "/figures/silbato.png" },
 ]);
 
 export type FigureKey = (typeof FIGURES)[number]["key"];

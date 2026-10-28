@@ -44,7 +44,7 @@ const GameTile = ({ game }: { game: GameEntry }) => {
             className="block animate-bounce-soft motion-reduce:animate-none"
             style={{ animationDelay: `${index * 220}ms` }}
           >
-            <Figure kind={kind} className="h-10 w-10 sm:h-12 sm:w-12" />
+            <Figure kind={kind} className="h-12 w-12 sm:h-14 sm:w-14" />
           </span>
         ))}
         <span aria-hidden="true" className={cn(badgeVariants({ tone: game.tone }))}>

@@ -57,7 +57,7 @@ const FigurePanel = ({
           <Figure
             kind={kind}
             className={cn(
-              "h-10 w-10 sm:h-11 sm:w-11 lg:h-16 lg:w-16",
+              "h-10 w-10 sm:h-14 sm:w-14 lg:h-[4.5rem] lg:w-[4.5rem]",
               removing && "opacity-50 saturate-50",
               celebrating && "animate-celebrate-spin"
             )}
