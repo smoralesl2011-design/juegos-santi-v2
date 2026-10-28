@@ -1,6 +1,6 @@
 import AnswerBox from "@/components/game/answer-box";
 import FigurePanel from "@/components/game/figure-panel";
-import { FIGURE_LABELS } from "@/components/game/figure-data";
+import { figureLabel } from "@/components/game/figure-data";
 import OperatorBadge from "@/components/game/operator-badge";
 import type { AnswerStatus, GameRound } from "@/hooks/use-addition-game";
 
@@ -19,11 +19,12 @@ interface EquationRowProps {
  */
 const EquationRow = ({ round, status, typed, correctAnswer, shakeKey }: EquationRowProps) => {
   const celebrating = status === "correct";
+  const figureName = figureLabel(round.figure);
 
   return (
     <div className="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-stretch gap-x-2.5 gap-y-3 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1.05fr)] md:gap-x-3 md:gap-y-0 lg:gap-x-5">
       <p className="sr-only">
-        {`${round.a} ${FIGURE_LABELS[round.figure]} más ${round.b} ${FIGURE_LABELS[round.figure]}`}
+        {`${round.a} ${figureName} más ${round.b} ${figureName}`}
       </p>
 
       <FigurePanel
